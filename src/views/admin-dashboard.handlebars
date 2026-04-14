@@ -1,0 +1,44 @@
+<section class="card">
+  <div class="section-head">
+    <h2>All Student Complaints</h2>
+  </div>
+
+  {{#if complaints.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each complaints}}
+          <tr>
+            <td>{{this.student.name}} ({{this.student.username}})</td>
+            <td>{{this.title}}</td>
+            <td>{{this.description}}</td>
+            <td>
+              <span class="status {{#if (eq this.status 'Under Investigation')}}status-active{{/if}}">
+                {{this.status}}
+              </span>
+            </td>
+            <td>
+              {{#if (eq this.status "Open")}}
+                <form action="/complaints/{{this._id}}/status" method="POST">
+                  <button class="btn btn-secondary" type="submit">Mark Under Investigation</button>
+                </form>
+              {{else}}
+                <span>Updated</span>
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>No complaints available.</p>
+  {{/if}}
+</section>

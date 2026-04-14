@@ -1,0 +1,19 @@
+<section class="card auth-card">
+  <h2>Add New Complaint</h2>
+
+  {{#if error}}
+    <p class="alert">{{error}}</p>
+  {{/if}}
+
+  <form action="/complaints" method="POST" class="form-grid">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="{{formData.title}}" required />
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="5" required>{{formData.description}}</textarea>
+
+    <button type="submit" class="btn">Submit Complaint</button>
+  </form>
+
+  <p class="helper-text"><a href="/dashboard">Back to Dashboard</a></p>
+</section>

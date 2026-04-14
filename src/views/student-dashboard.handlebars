@@ -1,0 +1,35 @@
+<section class="card">
+  <div class="section-head">
+    <h2>Your Complaints</h2>
+    <a href="/complaints/new" class="btn">Add New Complaint</a>
+  </div>
+
+  {{#if complaints.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each complaints}}
+          <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.description}}</td>
+            <td>
+              <span class="status {{#if (eq this.status 'Under Investigation')}}status-active{{/if}}">
+                {{this.status}}
+              </span>
+            </td>
+            <td>{{formatDate this.createdAt}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>No complaints submitted yet.</p>
+  {{/if}}
+</section>
