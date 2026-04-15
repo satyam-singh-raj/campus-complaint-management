@@ -89,9 +89,38 @@ router.post(
   ensureRole("admin"),
   async (req, res) => {
     try {
-      await Complaint.findByIdAndUpdate(req.params.id, {
-        status: "Under Investigation",
-      });
+      const { status } = req.body;
+      const allowedStatuses = ["Under Investigation", "Resolved"];
+
+      if (!allowedStatuses.includes(status)) {
+        return res.status(400).render("error", {
+          title: "Invalid Status",
+          message: "Status update is not allowed.",
+        });
+      }
+
+      const complaint = await Complaint.findById(req.params.id);
+
+      if (!complaint) {
+        return res.status(404).render("error", {
+          title: "Not Found",
+          message: "Complaint not found.",
+        });
+      }
+
+      const isValidTransition =
+        (complaint.status === "Open" && status === "Under Investigation") ||
+        (complaint.status === "Under Investigation" && status === "Resolved");
+
+      if (!isValidTransition) {
+        return res.status(400).render("error", {
+          title: "Invalid Status",
+          message: "Invalid status transition.",
+        });
+      }
+
+      complaint.status = status;
+      await complaint.save();
 
       return res.redirect("/dashboard");
     } catch (error) {

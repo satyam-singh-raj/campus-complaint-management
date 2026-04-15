@@ -14,7 +14,7 @@ const complaintSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Open", "Under Investigation"],
+      enum: ["Open", "Under Investigation", "Resolved"],
       default: "Open",
     },
     student: {

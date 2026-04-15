@@ -152,8 +152,8 @@ textarea:focus {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  border: 0;
-  background: linear-gradient(135deg, #0b84ff 0%, #1973e8 100%);
+  border: 1px solid #0b84ff;
+  background: #0b84ff;
   color: #fff;
   padding: 0.66rem 1.03rem;
   border-radius: 11px;
@@ -161,28 +161,29 @@ textarea:focus {
   cursor: pointer;
   width: fit-content;
   font-weight: 600;
-  box-shadow: 0 8px 20px rgba(25, 115, 232, 0.28);
-  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+  box-shadow: none;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 
 .btn:hover {
-  filter: brightness(1.03);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(25, 115, 232, 0.33);
+  background: #0666c8;
+  border-color: #0666c8;
 }
 
 .btn:active {
-  transform: translateY(0);
+  background: #0559ae;
+  border-color: #0559ae;
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #ffffff 0%, #eff8ff 100%);
+  background: #f5f9ff;
   color: #0a6fbb;
-  box-shadow: 0 8px 20px rgba(11, 180, 122, 0.24);
+  border-color: #9fc7ee;
 }
 
 .btn-secondary:hover {
-  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.22);
+  background: #eaf3ff;
+  border-color: #83b5e6;
 }
 
 .helper-text {
@@ -256,6 +257,11 @@ tbody tr:hover {
 .status-active {
   background: #dbfaec;
   color: #0f6f4d;
+}
+
+.status-resolved {
+  background: #e8f7e8;
+  color: #1e6b1e;
 }
 
 @keyframes rise-in {

@@ -8,7 +8,7 @@ It works on your own computer and does not need any online server.
 - Students can create an account, log in, and submit complaints.
 - Students can see only the complaints they submitted.
 - Admin users can see all complaints from all students.
-- Admin users can change a complaint status to "Under Investigation".
+- Admin users can change complaint status from "Open" to "Under Investigation" and then to "Resolved".
 
 ## What you need before starting
 

@@ -20,7 +20,7 @@
             <td>{{this.title}}</td>
             <td>{{this.description}}</td>
             <td>
-              <span class="status {{#if (eq this.status 'Under Investigation')}}status-active{{/if}}">
+              <span class="status {{#if (eq this.status 'Under Investigation')}}status-active{{/if}}{{#if (eq this.status 'Resolved')}} status-resolved{{/if}}">
                 {{this.status}}
               </span>
             </td>

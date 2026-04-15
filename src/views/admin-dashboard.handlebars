@@ -21,17 +21,25 @@
             <td>{{this.title}}</td>
             <td>{{this.description}}</td>
             <td>
-              <span class="status {{#if (eq this.status 'Under Investigation')}}status-active{{/if}}">
+              <span class="status {{#if (eq this.status 'Under Investigation')}}status-active{{/if}}{{#if (eq this.status 'Resolved')}} status-resolved{{/if}}">
                 {{this.status}}
               </span>
             </td>
             <td>
               {{#if (eq this.status "Open")}}
                 <form action="/complaints/{{this._id}}/status" method="POST">
+                  <input type="hidden" name="status" value="Under Investigation" />
                   <button class="btn btn-secondary" type="submit">Mark Under Investigation</button>
                 </form>
               {{else}}
-                <span>Updated</span>
+                {{#if (eq this.status "Under Investigation")}}
+                  <form action="/complaints/{{this._id}}/status" method="POST">
+                    <input type="hidden" name="status" value="Resolved" />
+                    <button class="btn btn-secondary" type="submit">Mark Resolved</button>
+                  </form>
+                {{else}}
+                  <span>Updated</span>
+                {{/if}}
               {{/if}}
             </td>
           </tr>
